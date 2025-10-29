@@ -1,11 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
 }
 
 android {
     namespace = "com.example.foodiewe"
     compileSdk = 36
-
 
     defaultConfig {
         applicationId = "com.example.foodiewe"
@@ -15,58 +22,40 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val apiKey = localProperties.getProperty("API_KEY") ?: ""
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
+
+        println("Api key : = $apiKey")
+
     }
 
     buildFeatures {
         buildConfig = true
     }
 
-    val apiKey: String = project.findProperty("SPOONACULAR_API_KEY") as? String ?: ""
-
-    buildTypes {
-        debug {
-            buildConfigField("String", "SPOONACULAR_API_KEY", "\"$apiKey\"")
-        }
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            buildConfigField("String", "SPOONACULAR_API_KEY", "\"$apiKey\"")
-        }
-    }
-
-
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-
     }
-
 }
 
-
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
 
-    // Retrofit core library
+    // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-
-   // Converter library (e.g., Gson)
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Picasso
     implementation("com.squareup.picasso:picasso:2.71828")
 
     implementation(libs.constraintlayout)

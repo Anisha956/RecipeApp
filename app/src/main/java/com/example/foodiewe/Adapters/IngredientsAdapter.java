@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHolder>{
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHolder> {
 
     Context context;
     List<ExtendedIngredient> list;
@@ -29,7 +29,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
     @NonNull
     @Override
     public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new IngredientsViewHolder(LayoutInflater.from(context).inflate(R.layout.list_meal_ingredients,parent,false));
+        return new IngredientsViewHolder(LayoutInflater.from(context).inflate(R.layout.list_meal_ingredients, parent, false));
     }
 
     @Override
@@ -39,20 +39,23 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
         holder.textView_ingredients_quantity.setText(list.get(position).original);
         holder.textView_ingredients_quantity.setSelected(true);
 
-        Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/"+list.get(position).image).into(holder.imageView_ingredients);
+        Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/" + list.get(position).image).into(holder.imageView_ingredients);
 
 
     }
+
 
     @Override
     public int getItemCount() {
         return list.size();
     }
 }
-class IngredientsViewHolder extends RecyclerView.ViewHolder{
+
+class  IngredientsViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView_ingredients_quantity, textView_ingredients_name;
     ImageView imageView_ingredients;
+
     IngredientsViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -60,4 +63,5 @@ class IngredientsViewHolder extends RecyclerView.ViewHolder{
         textView_ingredients_quantity = itemView.findViewById(R.id.textView_ingredients_quantity);
         imageView_ingredients = itemView.findViewById(R.id.imageView_ingredients);
     }
+
 }

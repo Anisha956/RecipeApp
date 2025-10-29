@@ -48,12 +48,7 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
 
         Picasso.get().load(list.get(position).image).into(holder.imageview_food);
 
-        holder.random_list_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id));
-            }
-        });
+        holder.random_list_container.setOnClickListener(view -> listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id)));
     }
 
     @Override

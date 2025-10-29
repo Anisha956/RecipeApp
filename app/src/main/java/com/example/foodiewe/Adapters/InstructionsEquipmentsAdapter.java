@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodiewe.Models.Equipment;
-import com.example.foodiewe.Models.Ingredient;
 import com.example.foodiewe.R;
 import com.squareup.picasso.Picasso;
 

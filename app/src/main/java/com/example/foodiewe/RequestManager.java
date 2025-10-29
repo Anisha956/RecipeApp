@@ -1,6 +1,8 @@
 package com.example.foodiewe;
 
 import android.content.Context;
+import android.util.Log;
+
 
 import androidx.annotation.NonNull;
 
@@ -26,7 +28,8 @@ import retrofit2.http.Query;
 
 public class RequestManager {
     Context context;
-    String api_key = BuildConfig.SPOONACULAR_API_KEY;
+
+    String api_key = BuildConfig.API_KEY;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.spoonacular.com/")
@@ -39,7 +42,8 @@ public class RequestManager {
 
     public void getRandomRecipe(RandomRecipeResponseListener listener, List<String> tags) {
         CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
-        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(api_key, "10", tags);
+        Log.d("API_KEY","Loaded key:" +api_key);
+        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(api_key, "30", tags);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<RandomRecipeApiResponse> call, @NonNull Response<RandomRecipeApiResponse> response) {
@@ -80,7 +84,7 @@ public class RequestManager {
 
     public void getSimilarRecipes(SimilarRecipeListener listener, int id) {
         CallSimilarRecipes callSimilarRecipes = retrofit.create(CallSimilarRecipes.class);
-        Call<List<SimilarRecipeResponse>> call = callSimilarRecipes.callSimilarRecipe(id, "5",api_key);
+        Call<List<SimilarRecipeResponse>> call = callSimilarRecipes.callSimilarRecipe(id, "10",api_key);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<List<SimilarRecipeResponse>> call, @NonNull Response<List<SimilarRecipeResponse>> response) {

@@ -1,5 +1,6 @@
 package com.example.foodiewe;
 
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -107,11 +108,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private final RecipeClickListener recipeClickListener = new RecipeClickListener() {
-        @Override
-        public void onRecipeClicked(String id) {
-           startActivity(new Intent(MainActivity.this, RecipeDetailsActivity.class)
-                   .putExtra("id",id));
-        }
-    };
+    private final RecipeClickListener recipeClickListener = id -> startActivity(new Intent(MainActivity.this, RecipeDetailsActivity.class)
+            .putExtra("id",id));
 }

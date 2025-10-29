@@ -5,19 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodiewe.Listener.RecipeClickListener;
 import com.example.foodiewe.Models.InstructionsResponse;
-import com.example.foodiewe.Models.SimilarRecipeResponse;
 import com.example.foodiewe.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

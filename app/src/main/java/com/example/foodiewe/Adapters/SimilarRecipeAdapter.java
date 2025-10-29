@@ -46,12 +46,7 @@ public class SimilarRecipeAdapter extends RecyclerView.Adapter<SimilarRecipeView
 
         Picasso.get().load("https://spoonacular.com/recipeImages/"+list.get(position).id+"-556x370."+list.get(position).imageType).into(holder.imageView_similar);
 
-        holder.similar_recipe_holder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id));
-            }
-        });
+        holder.similar_recipe_holder.setOnClickListener(view -> listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id)));
 
 
     }
