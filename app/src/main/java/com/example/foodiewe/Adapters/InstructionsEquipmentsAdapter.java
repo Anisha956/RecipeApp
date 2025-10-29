@@ -41,6 +41,8 @@ public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<Instruct
 
         Picasso.get().load("https://spoonacular.com/cdn/equipment_100x100/"+list.get(position).image).into(holder.imageView_instructions_step_items);
 
+
+
     }
 
     @Override
