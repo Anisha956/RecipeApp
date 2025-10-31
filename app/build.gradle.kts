@@ -26,7 +26,6 @@ android {
         val apiKey = localProperties.getProperty("API_KEY") ?: ""
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
 
-        println("Api key : = $apiKey")
 
     }
 

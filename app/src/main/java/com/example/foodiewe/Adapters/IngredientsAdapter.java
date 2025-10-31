@@ -43,11 +43,10 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         String imageName = list.get(position).image;
         if (imageName != null && !imageName.isEmpty()) {
             Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/" + imageName)
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .error(android.R.drawable.ic_delete)
+                    .placeholder(R.drawable.placeholder)
                     .into(holder.imageView_ingredients);
         } else {
-            holder.imageView_ingredients.setImageResource(android.R.drawable.ic_menu_gallery);
+            holder.imageView_ingredients.setImageResource(R.drawable.placeholder);
         }
 
     }

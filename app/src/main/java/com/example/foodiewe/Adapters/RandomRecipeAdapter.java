@@ -49,11 +49,10 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeAdapte
         String imageName = list.get(position).image;
         if (imageName != null && !imageName.isEmpty()) {
             Picasso.get().load(imageName)
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .error(android.R.drawable.ic_delete)
+                    .placeholder(R.drawable.placeholder)
                     .into(holder.imageview_food);
         } else {
-            holder.imageview_food.setImageResource(android.R.drawable.ic_menu_gallery);
+            holder.imageview_food.setImageResource(R.drawable.placeholder);
         }
 
         holder.random_list_container.setOnClickListener(view -> listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id)));

@@ -43,7 +43,7 @@ public class RequestManager {
     public void getRandomRecipe(RandomRecipeResponseListener listener, List<String> tags) {
         CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
         Log.d("API_KEY","Loaded key:" +api_key);
-        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(api_key, "30", tags);
+        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(api_key, "10", tags);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<RandomRecipeApiResponse> call, @NonNull Response<RandomRecipeApiResponse> response) {
@@ -84,7 +84,7 @@ public class RequestManager {
 
     public void getSimilarRecipes(SimilarRecipeListener listener, int id) {
         CallSimilarRecipes callSimilarRecipes = retrofit.create(CallSimilarRecipes.class);
-        Call<List<SimilarRecipeResponse>> call = callSimilarRecipes.callSimilarRecipe(id, "10",api_key);
+        Call<List<SimilarRecipeResponse>> call = callSimilarRecipes.callSimilarRecipe(id, "5",api_key);
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<List<SimilarRecipeResponse>> call, @NonNull Response<List<SimilarRecipeResponse>> response) {

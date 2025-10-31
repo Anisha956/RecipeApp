@@ -41,13 +41,23 @@ public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<Instruct
 
         String imageName = list.get(position).image;
         if (imageName != null && !imageName.isEmpty()) {
+            String imageUrl;
+
+            if (imageName.startsWith("http")) {
+                imageUrl = imageName;
+            } else {
+                imageUrl = "https://spoonacular.com/cdn/equipment_100x100/" + imageName;
+            }
+
+            Log.d("Equipment","final image url : "+ imageUrl);
+
             Picasso.get()
-                    .load("https://spoonacular.com/cdn/equipment_100x100/" + imageName)
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .error(android.R.drawable.ic_delete)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder)
                     .into(holder.imageView_instructions_step_items);
+
         } else {
-            holder.imageView_instructions_step_items.setImageResource(android.R.drawable.ic_menu_gallery);
+            holder.imageView_instructions_step_items.setImageResource(R.drawable.placeholder);
         }
 
     }

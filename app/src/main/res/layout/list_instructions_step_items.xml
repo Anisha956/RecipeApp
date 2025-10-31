@@ -13,8 +13,7 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:scaleType="center"
+            android:layout_height="70dp"
             android:id="@+id/imageView_instructions_step_items"/>
 
         <TextView

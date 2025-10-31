@@ -41,11 +41,10 @@ public class InstructionsIngredientsAdapter extends RecyclerView.Adapter<Instruc
         String imageName = list.get(position).image;
         if (imageName != null && !imageName.isEmpty()) {
             Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/" + imageName)
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .error(android.R.drawable.ic_delete)
+                    .placeholder(R.drawable.placeholder)
                     .into(holder.imageView_instructions_step_items);
         } else {
-            holder.imageView_instructions_step_items.setImageResource(android.R.drawable.ic_menu_gallery);
+            holder.imageView_instructions_step_items.setImageResource(R.drawable.placeholder);
         }
 
     }
