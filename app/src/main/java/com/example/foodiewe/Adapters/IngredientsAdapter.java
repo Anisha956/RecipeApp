@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHolder> {
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder> {
 
     Context context;
     List<ExtendedIngredient> list;
@@ -39,8 +39,16 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
         holder.textView_ingredients_quantity.setText(list.get(position).original);
         holder.textView_ingredients_quantity.setSelected(true);
 
-        Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/" + list.get(position).image).into(holder.imageView_ingredients);
 
+        String imageName = list.get(position).image;
+        if (imageName != null && !imageName.isEmpty()) {
+            Picasso.get().load("https://spoonacular.com/cdn/ingredients_100x100/" + imageName)
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .error(android.R.drawable.ic_delete)
+                    .into(holder.imageView_ingredients);
+        } else {
+            holder.imageView_ingredients.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
 
     }
 
@@ -49,9 +57,9 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsViewHold
     public int getItemCount() {
         return list.size();
     }
-}
 
-class  IngredientsViewHolder extends RecyclerView.ViewHolder {
+
+public static class  IngredientsViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView_ingredients_quantity, textView_ingredients_name;
     ImageView imageView_ingredients;
@@ -63,5 +71,5 @@ class  IngredientsViewHolder extends RecyclerView.ViewHolder {
         textView_ingredients_quantity = itemView.findViewById(R.id.textView_ingredients_quantity);
         imageView_ingredients = itemView.findViewById(R.id.imageView_ingredients);
     }
-
+  }
 }

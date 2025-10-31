@@ -1,6 +1,7 @@
 package com.example.foodiewe.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<InstructionsEquipmentsViewHolder>{
+public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<InstructionsEquipmentsAdapter.InstructionsEquipmentsViewHolder>{
 
     Context context;
     List<Equipment> list;
@@ -38,9 +39,16 @@ public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<Instruct
         holder.textView_instructions_step_item.setText(list.get(position).name);
         holder.textView_instructions_step_item.setSelected(true);
 
-        Picasso.get().load("https://spoonacular.com/cdn/equipment_100x100/"+list.get(position).image).into(holder.imageView_instructions_step_items);
-
-
+        String imageName = list.get(position).image;
+        if (imageName != null && !imageName.isEmpty()) {
+            Picasso.get()
+                    .load("https://spoonacular.com/cdn/equipment_100x100/" + imageName)
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .error(android.R.drawable.ic_delete)
+                    .into(holder.imageView_instructions_step_items);
+        } else {
+            holder.imageView_instructions_step_items.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
 
     }
 
@@ -48,8 +56,8 @@ public class InstructionsEquipmentsAdapter extends RecyclerView.Adapter<Instruct
     public int getItemCount() {
         return list.size();
     }
-}
-class InstructionsEquipmentsViewHolder extends RecyclerView.ViewHolder {
+
+public static class  InstructionsEquipmentsViewHolder extends RecyclerView.ViewHolder {
     TextView textView_instructions_step_item;
     ImageView imageView_instructions_step_items;
 
@@ -60,4 +68,5 @@ class InstructionsEquipmentsViewHolder extends RecyclerView.ViewHolder {
         textView_instructions_step_item = itemView.findViewById(R.id.textView_instructions_step_item);
 
     }
+}
 }

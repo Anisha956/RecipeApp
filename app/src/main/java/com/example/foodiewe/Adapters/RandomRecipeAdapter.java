@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHolder> {
+public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeAdapter.RandomRecipeViewHolder> {
 
     Context context;
     List<Recipe> list;
@@ -46,7 +46,15 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
         holder.textview_servings.setText(list.get(position).servings+" Servings");
         holder.textview_time.setText(list.get(position).readyInMinutes+" Minutes");
 
-        Picasso.get().load(list.get(position).image).into(holder.imageview_food);
+        String imageName = list.get(position).image;
+        if (imageName != null && !imageName.isEmpty()) {
+            Picasso.get().load(imageName)
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .error(android.R.drawable.ic_delete)
+                    .into(holder.imageview_food);
+        } else {
+            holder.imageview_food.setImageResource(android.R.drawable.ic_menu_gallery);
+        }
 
         holder.random_list_container.setOnClickListener(view -> listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id)));
     }
@@ -55,8 +63,8 @@ public class RandomRecipeAdapter extends RecyclerView.Adapter<RandomRecipeViewHo
     public int getItemCount() {
         return list.size();
     }
-}
-class  RandomRecipeViewHolder extends RecyclerView.ViewHolder{
+
+public static class  RandomRecipeViewHolder extends RecyclerView.ViewHolder {
     CardView random_list_container;
     TextView textview_title, textview_servings, textview_likes, textview_time;
     ImageView imageview_food;
@@ -71,4 +79,5 @@ class  RandomRecipeViewHolder extends RecyclerView.ViewHolder{
         textview_time = itemView.findViewById(R.id.textview_time);
         imageview_food = itemView.findViewById(R.id.imageview_food);
     }
+}
 }

@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SimilarRecipeAdapter extends RecyclerView.Adapter<SimilarRecipeViewHolder> {
+public class SimilarRecipeAdapter extends RecyclerView.Adapter<SimilarRecipeAdapter.SimilarRecipeViewHolder> {
 
     Context context;
     List<SimilarRecipeResponse> list;
@@ -48,15 +48,14 @@ public class SimilarRecipeAdapter extends RecyclerView.Adapter<SimilarRecipeView
 
         holder.similar_recipe_holder.setOnClickListener(view -> listener.onRecipeClicked(String.valueOf(list.get(holder.getAbsoluteAdapterPosition()).id)));
 
-
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-}
-class  SimilarRecipeViewHolder extends RecyclerView.ViewHolder{
+
+public static class  SimilarRecipeViewHolder extends RecyclerView.ViewHolder {
     CardView similar_recipe_holder;
     TextView textView_similar_title, textView_similar_servings;
     ImageView imageView_similar;
@@ -70,4 +69,5 @@ class  SimilarRecipeViewHolder extends RecyclerView.ViewHolder{
         imageView_similar = itemView.findViewById(R.id.imageView_similar);
 
     }
+}
 }

@@ -3,7 +3,9 @@ package com.example.foodiewe;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     TextView textView_meal_name, textView_meal_source, textView_meal_summary;
     ImageView imageView_meal_image;
     RequestManager manager;
-    ProgressDialog dialog;
+    ProgressBar progressBar;
     IngredientsAdapter ingredientsAdapter;
     InstructionsAdapter instructionsAdapter;
     SimilarRecipeAdapter similarRecipeAdapter;
@@ -52,9 +54,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         manager.getRecipeDetails(recipeDetailsListener,id);
         manager.getSimilarRecipes(similarRecipeListener,id);
         manager.getInstructions(instructionsListener,id);
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Loading Details");
-        dialog.show();
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
     }
 
@@ -72,7 +73,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private final RecipeDetailsListener recipeDetailsListener = new RecipeDetailsListener() {
         @Override
         public void didFetch(RecipeDetailsResponse response, String message) {
-            dialog.dismiss();
+            progressBar.setVisibility(View.GONE);
             textView_meal_name.setText(response.title);
             textView_meal_source.setText(response.sourceName);
             textView_meal_summary.setText(response.summary);

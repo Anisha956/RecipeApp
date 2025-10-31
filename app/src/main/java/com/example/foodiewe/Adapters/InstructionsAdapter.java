@@ -16,7 +16,7 @@ import com.example.foodiewe.R;
 
 import java.util.List;
 
-public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsViewHolder> {
+public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsAdapter.InstructionsViewHolder> {
 
     Context context;
     List<InstructionsResponse> list;
@@ -48,8 +48,8 @@ public class InstructionsAdapter extends RecyclerView.Adapter<InstructionsViewHo
     public int getItemCount() {
         return list.size();
     }
-}
-class  InstructionsViewHolder extends RecyclerView.ViewHolder{
+
+public static class  InstructionsViewHolder extends RecyclerView.ViewHolder {
     TextView textView_instruction_name;
     RecyclerView recycler_instruction_steps;
 
@@ -61,4 +61,5 @@ class  InstructionsViewHolder extends RecyclerView.ViewHolder{
 
 
     }
+ }
 }

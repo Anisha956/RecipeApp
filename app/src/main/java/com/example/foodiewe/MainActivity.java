@@ -1,12 +1,14 @@
 package com.example.foodiewe;
 
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ProgressDialog dialog;
+    ProgressBar progressBar;
     RequestManager manager;
     RecyclerView recyclerView;
     RandomRecipeAdapter randomRecipeAdapter;
@@ -33,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
     List<String> tags = new ArrayList<>();
     SearchView searchView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Loading....");
+        progressBar = findViewById(R.id.main_ProgressBar);
 
         searchView = findViewById(R.id.searchView_home);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 tags.clear();
                 tags.add(query);
                 manager.getRandomRecipe(randomRecipeResponseListener,tags);
-                dialog.show();
+                progressBar.setVisibility(View.VISIBLE);
                 return true;
             }
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private final RandomRecipeResponseListener randomRecipeResponseListener = new RandomRecipeResponseListener() {
         @Override
         public void didFetch(RandomRecipeApiResponse response, String message) {
-            dialog.dismiss();
+            progressBar.setVisibility(View.GONE);
             recyclerView = findViewById(R.id.recycle_random);
             recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
             recyclerView.setHasFixedSize(true);
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             tags.clear();
             tags.add(adapterView.getSelectedItem().toString());
             manager.getRandomRecipe(randomRecipeResponseListener,tags);
-            dialog.show();
+            progressBar.setVisibility(View.VISIBLE);
 
         }
 

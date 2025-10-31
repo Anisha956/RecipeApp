@@ -15,7 +15,7 @@ import com.example.foodiewe.R;
 
 import java.util.List;
 
-public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStepViewHolder> {
+public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStepAdapter.InstructionStepViewHolder> {
 
     Context context;
     List<Step> list;
@@ -28,7 +28,7 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
     @NonNull
     @Override
     public InstructionStepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InstructionStepViewHolder(LayoutInflater.from(context).inflate(R.layout.list_instructions_steps,parent,false));
+        return new InstructionStepViewHolder(LayoutInflater.from(context).inflate(R.layout.list_instructions_steps, parent, false));
     }
 
     @Override
@@ -54,10 +54,11 @@ public class InstructionStepAdapter extends RecyclerView.Adapter<InstructionStep
     public int getItemCount() {
         return list.size();
     }
-}
-class InstructionStepViewHolder extends RecyclerView.ViewHolder{
+
+public static class InstructionStepViewHolder extends RecyclerView.ViewHolder {
     TextView textView_instruction_step_number, textView_instruction_step_title;
     RecyclerView recycler_instructions_equipments, recycler_instructions_ingredients;
+
     public InstructionStepViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -67,6 +68,6 @@ class InstructionStepViewHolder extends RecyclerView.ViewHolder{
         recycler_instructions_ingredients = itemView.findViewById(R.id.recycler_instructions_ingredients);
 
     }
-
+  }
 }
 
