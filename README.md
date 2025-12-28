@@ -23,10 +23,13 @@ Search, explore, and view detailed recipes — all in one app!
 ---
 
 ## App Screenshots
-(img1.jpg)
-(img2.jpg)
-img3.jpg)
-(img4.jpg)
+<p align="center">
+  <img src="img1.jpg" width="300"> 
+  <img src="img2.jpg" width="300">
+ <img src="img3.jpg" width="300">
+<img src="img4.jpg" width="300">
+</p>
+
 
 ## 🧠 How to Use
 1. Clone this repository  
