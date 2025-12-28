@@ -23,10 +23,10 @@ Search, explore, and view detailed recipes — all in one app!
 ---
 
 ## App Screenshots
-
-![Home Screen](img1.jpg)
-![Login Screen](img2.jpg)
-
+(img1.jpg)
+(img2.jpg)
+img3.jpg)
+(img4.jpg)
 
 ## 🧠 How to Use
 1. Clone this repository  
