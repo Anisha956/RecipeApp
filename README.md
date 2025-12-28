@@ -22,6 +22,12 @@ Search, explore, and view detailed recipes — all in one app!
 
 ---
 
+## App Screenshots
+
+![Home Screen](images/img1.png)
+![Login Screen](images/img2.png)
+
+
 ## 🧠 How to Use
 1. Clone this repository  
    ```bash
