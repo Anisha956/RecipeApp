@@ -24,8 +24,8 @@ Search, explore, and view detailed recipes — all in one app!
 
 ## App Screenshots
 
-![Home Screen](images/img1.png)
-![Login Screen](images/img2.png)
+![Home Screen](img1.jpg)
+![Login Screen](img2.jpg)
 
 
 ## 🧠 How to Use
